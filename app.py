@@ -5,18 +5,13 @@ from ingest import save_memory
 from rag_pipeline import retriever, llm
 from database import cursor
 
-# ==========================================
-# PAGE CONFIG
-# ==========================================
 
 st.set_page_config(
     page_title="AI Memory Diary",
     layout="wide"
 )
 
-# ==========================================
 # CUSTOM CSS
-# ==========================================
 st.markdown("""
 <style>
 
@@ -120,9 +115,7 @@ input, textarea {
 </style>
 """, unsafe_allow_html=True)
 
-# ==========================================
 # SIDEBAR
-# ==========================================
 
 st.sidebar.title("AI Memory Diary")
 
@@ -161,17 +154,13 @@ if page == "Add Memory":
         else:
             st.warning("Please fill all fields")
 
-# ==========================================
 # SAVED MEMORIES
-# ==========================================
 
 elif page == "Saved Memories":
 
     st.title("Saved Memories")
 
-    # -----------------------------
     # SEARCH SECTION
-    # -----------------------------
 
     search_text = st.text_input(
         "Search memories"
@@ -182,9 +171,7 @@ elif page == "Saved Memories":
         value=None
     )
 
-    # -----------------------------
     # SQL QUERY
-    # -----------------------------
 
     query = """
     SELECT id, title, content, created_at
@@ -226,9 +213,7 @@ elif page == "Saved Memories":
 
     rows = cursor.fetchall()
 
-    # -----------------------------
     # DISPLAY MEMORIES
-    # -----------------------------
 
     if rows:
 
@@ -253,10 +238,7 @@ elif page == "Saved Memories":
 
     else:
         st.info("No memories found")
-
-# ==========================================
 # ASK AI
-# ==========================================
 
 elif page == "Ask AI":
 
